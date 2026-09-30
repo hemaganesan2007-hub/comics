@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComicCraft – AI Comic Story Creator</title>
+  <meta name="description" content="Turn your imagination into a 5-panel AI-powered comic with Gemini models and Stable Diffusion.">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="comic-bg">
+  <div class="comic-wrapper">
+    <!-- Header -->
+    <header class="comic-header">
+      <div class="logo-badge">5-PANEL AI ADVENTURE</div>
+      <h1 class="comic-main-title">COMICCRAFT</h1>
+      <p class="comic-subtitle">Turn your imagination into an AI-powered comic.</p>
+      
+      <!-- Quick Test Scenarios Bar -->
+      <div class="scenario-bar">
+        <span class="scenario-label">Quick Scenarios:</span>
+        <button type="button" class="scenario-btn" onclick="applyScenario1()">Scenario 1: Fox Finn in Forest (Dramatic Anime)</button>
+        <button type="button" class="scenario-btn" onclick="applyScenario2()">Scenario 2: Finn in Forest (Funny Comic Book)</button>
+        <a href="/docs" target="_blank" class="api-docs-link">FastAPI Swagger Docs</a>
+      </div>
+    </header>
+
+    <!-- Main Creation Card -->
+    <main class="creation-container">
+      <div class="comic-card creation-card">
+        <div class="card-strip">
+          <span class="strip-text">STORYBOARD GENERATOR</span>
+        </div>
+
+        <form action="/generate" method="POST" id="comicForm" class="comic-form">
+          <!-- Story Prompt -->
+          <div class="form-group">
+            <label for="story_prompt" class="comic-label">
+              <span class="label-number">1</span> Story Prompt
+              <span class="label-hint">What is the core premise or adventure?</span>
+            </label>
+            <textarea
+              id="story_prompt"
+              name="story_prompt"
+              rows="4"
+              required
+              placeholder="e.g., A brave fox exploring an enchanted forest, searching for the ancient luminescent crystal..."
+              class="comic-input comic-textarea"
+            >A brave fox exploring an enchanted forest</textarea>
+          </div>
+
+          <!-- Character Name -->
+          <div class="form-group">
+            <label for="character_name" class="comic-label">
+              <span class="label-number">2</span> Main Character Name
+              <span class="label-hint">The hero of your comic</span>
+            </label>
+            <input
+              type="text"
+              id="character_name"
+              name="character_name"
+              required
+              value="Finn"
+              placeholder="e.g., Finn, Nova, Captain Ray"
+              class="comic-input"
+            >
+          </div>
+
+          <!-- Dropdowns Grid -->
+          <div class="form-grid-3">
+            <!-- Setting -->
+            <div class="form-group">
+              <label for="setting" class="comic-label">
+                <span class="label-number">3</span> Setting
+              </label>
+              <select id="setting" name="setting" class="comic-select">
+                <option value="Forest" selected>Forest</option>
+                <option value="School">School</option>
+                <option value="Space">Space</option>
+                <option value="City">City</option>
+              </select>
+            </div>
+
+            <!-- Tone -->
+            <div class="form-group">
+              <label for="tone" class="comic-label">
+                <span class="label-number">4</span> Story Tone
+              </label>
+              <select id="tone" name="tone" class="comic-select">
+                <option value="Dramatic" selected>Dramatic</option>
+                <option value="Funny">Funny</option>
+                <option value="Light-hearted">Light-hearted</option>
+                <option value="Poetic">Poetic</option>
+              </select>
+            </div>
+
+            <!-- Art Style -->
+            <div class="form-group">
+              <label for="art_style" class="comic-label">
+                <span class="label-number">5</span> Art Style
+              </label>
+              <select id="art_style" name="art_style" class="comic-select">
+                <option value="Anime" selected>Anime</option>
+                <option value="Comic Book">Comic Book</option>
+                <option value="Pixel Art">Pixel Art</option>
+                <option value="Realistic">Realistic</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Pipeline Indicator -->
+          <div class="pipeline-features">
+            <div class="feature-tag">Gemini Flash Outline</div>
+            <div class="feature-tag">Gemini Pro Dialogue</div>
+            <div class="feature-tag">Stable Diffusion Art</div>
+            <div class="feature-tag">FPDF Multi-Page PDF</div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-actions">
+            <button type="submit" id="submitBtn" class="comic-submit-btn">
+              <span class="btn-text">CREATE MY COMIC</span>
+              <span class="btn-sub">Generate 5 Panels & PDF</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+          <div class="loading-box">
+            <div class="comic-spinner"></div>
+            <h3 class="loading-title">CRAFTING YOUR COMIC...</h3>
+            <p id="loadingStatus" class="loading-desc">Invoking Gemini Flash outline engine...</p>
+            <div class="loading-steps">
+              <div class="step-item step-active">1. Narrative Outline</div>
+              <div class="step-item">2. Script & Dialogue</div>
+              <div class="step-item">3. 5 Panel Illustrations</div>
+              <div class="step-item">4. PDF Compilation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="comic-footer">
+      <p>ComicCraft &copy; 2026. Built with FastAPI, Google Gemini Models, Hugging Face Diffusers, and FPDF.</p>
+    </footer>
+  </div>
+
+  <script>
+    function applyScenario1() {
+      document.getElementById('story_prompt').value = "A brave fox exploring an enchanted forest";
+      document.getElementById('character_name').value = "Finn";
+      document.getElementById('setting').value = "Forest";
+      document.getElementById('tone').value = "Dramatic";
+      document.getElementById('art_style').value = "Anime";
+    }
+
+    function applyScenario2() {
+      document.getElementById('story_prompt').value = "A brave fox exploring an enchanted forest";
+      document.getElementById('character_name').value = "Finn";
+      document.getElementById('setting').value = "Forest";
+      document.getElementById('tone').value = "Funny";
+      document.getElementById('art_style').value = "Comic Book";
+    }
+
+    document.getElementById('comicForm').addEventListener('submit', function() {
+      document.getElementById('loadingOverlay').style.display = 'flex';
+      const steps = [
+        "Invoking Gemini Flash outline engine...",
+        "Writing detailed dialogue and narration with Gemini Pro...",
+        "Rendering panel illustrations...",
+        "Compiling layout & multi-page PDF..."
+      ];
+      let idx = 0;
+      setInterval(() => {
+        if (idx < steps.length - 1) {
+          idx++;
+          document.getElementById('loadingStatus').textContent = steps[idx];
+        }
+      }, 3500);
+    });
+  </script>
+</body>
+</html>

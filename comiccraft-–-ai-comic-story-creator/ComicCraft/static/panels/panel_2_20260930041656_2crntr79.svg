@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad_2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <pattern id="halftone_2" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="8" r="1.5" fill="#ffffff" opacity="0.12"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" fill="url(#skyGrad_2)"/>
+  <rect width="512" height="512" fill="url(#halftone_2)"/>
+
+  <!-- Dramatic Rays for climax panels -->
+  
+
+  <!-- Scenery -->
+  
+      <path d="M 0 350 L 100 240 L 200 350 Z" fill="#047857" opacity="0.6"/>
+      <path d="M 120 370 L 240 210 L 360 370 Z" fill="#065f46" opacity="0.8"/>
+      <path d="M 280 380 L 400 230 L 512 380 Z" fill="#047857" opacity="0.7"/>
+      <circle cx="260" cy="180" r="8" fill="#a7f3d0" opacity="0.8" filter="blur(2px)"/>
+      <circle cx="180" cy="220" r="6" fill="#6ee7b7" opacity="0.9" filter="blur(1px)"/>
+      <circle cx="340" cy="200" r="10" fill="#a7f3d0" opacity="0.7" filter="blur(3px)"/>
+    
+
+  <!-- Ground -->
+  <rect x="0" y="380" width="512" height="132" fill="#090d16"/>
+  <line x1="0" y1="380" x2="512" y2="380" stroke="#34d399" stroke-width="3"/>
+
+  <!-- Character Silhouette / Action Focal -->
+  <g transform="translate(0, 0)">
+    <circle cx="256" cy="250" r="38" fill="#fb923c"/>
+       <rect x="240" y="285" width="32" height="70" rx="6" fill="#34d399"/>
+  </g>
+
+  <!-- Comic Framing -->
+  <rect x="8" y="8" width="496" height="496" fill="none" stroke="#18181b" stroke-width="12"/>
+  <rect x="16" y="16" width="480" height="480" fill="none" stroke="#34d399" stroke-width="3"/>
+
+  <!-- Panel Badge -->
+  <rect x="24" y="24" width="110" height="34" rx="4" fill="#18181b" stroke="#34d399" stroke-width="2"/>
+  <text x="79" y="47" font-family="Bangers, sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" letter-spacing="1">PANEL #2</text>
+
+  <!-- Style Tag -->
+  <rect x="360" y="24" width="128" height="28" rx="4" fill="#18181b" opacity="0.85"/>
+  <text x="424" y="43" font-family="sans-serif" font-size="11" font-weight="bold" fill="#34d399" text-anchor="middle">COMIC BOOK</text>
+
+  <!-- Bottom Visual Snippet -->
+  <rect x="24" y="440" width="464" height="48" rx="4" fill="#0f172a" opacity="0.9" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="462" font-family="sans-serif" font-size="12" fill="#e2e8f0" font-weight="600">Comic Book style comic panel: Finn discovering a glowing...</text>
+  <text x="40" y="478" font-family="sans-serif" font-size="10" fill="#34d399">[ ComicCraft AI Visual Pipeline &bull; Panel 2 of 5 ]</text>
+</svg>

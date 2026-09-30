@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Comic – ComicCraft Preview</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="comic-bg">
+  <div class="comic-wrapper preview-wrapper">
+    <!-- Header -->
+    <header class="preview-header">
+      <div class="top-nav-bar">
+        <a href="/" class="back-home-link">&larr; Back to ComicCraft</a>
+        <div class="meta-pill">5 Panels &bull; {{ tone }} &bull; {{ art_style }}</div>
+      </div>
+      <h1 class="preview-title">YOUR COMIC</h1>
+      <p class="preview-premise">"{{ story_prompt }}"</p>
+      <div class="story-attributes">
+        <span class="attr-tag"><strong>Hero:</strong> {{ character_name }}</span>
+        <span class="attr-tag"><strong>Setting:</strong> {{ setting }}</span>
+        <span class="attr-tag"><strong>Tone:</strong> {{ tone }}</span>
+        <span class="attr-tag"><strong>Art Style:</strong> {{ art_style }}</span>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="preview-action-bar">
+        {% if pdf_path %}
+          <a href="{{ pdf_path }}" download class="btn-download-pdf">
+            <span class="btn-icon">&#128196;</span>
+            DOWNLOAD YOUR COMIC AS PDF
+          </a>
+          <a href="/export-success?pdf_path={{ pdf_path }}&generation_id={{ generation_id }}" class="btn-view-export">
+            View Export Details &rarr;
+          </a>
+        {% endif %}
+      </div>
+    </header>
+
+    <!-- Panels Container -->
+    <main class="panels-grid">
+      {% for panel in layout %}
+      <article class="comic-panel-card">
+        <!-- Panel Header Ribbon -->
+        <div class="panel-header-ribbon">
+          <span class="panel-badge">PANEL #{{ panel.panel_number }}</span>
+          <h2 class="panel-heading">{{ panel.title }}</h2>
+        </div>
+
+        <div class="panel-card-body">
+          <!-- Illustration Box -->
+          <div class="panel-image-container">
+            {% if panel.image_path %}
+              <img src="{{ panel.image_path }}" alt="Panel {{ panel.panel_number }} illustration" class="panel-image" loading="lazy" referrerpolicy="no-referrer">
+            {% else %}
+              <div class="panel-image-placeholder">Illustration Generating...</div>
+            {% endif %}
+            
+            {% if panel.caption %}
+              <div class="panel-caption-box">
+                <span class="caption-tag">CAPTION</span>
+                <span class="caption-text">{{ panel.caption }}</span>
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Story Elements -->
+          <div class="panel-story-content">
+            <!-- Narration -->
+            {% if panel.narration %}
+            <div class="narration-banner">
+              <span class="section-label">&#128227; NARRATION:</span>
+              <p class="narration-text">{{ panel.narration }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Character Dialogue -->
+            {% if panel.dialogue %}
+            <div class="speech-bubble-wrapper">
+              <div class="speech-bubble">
+                <span class="speech-bubble-tail"></span>
+                <p class="dialogue-text">{{ panel.dialogue }}</p>
+              </div>
+            </div>
+            {% endif %}
+
+            <!-- Scene Description -->
+            {% if panel.scene_description %}
+            <div class="scene-desc-area">
+              <span class="section-label">&#127916; SCENE DESCRIPTION:</span>
+              <p class="scene-desc-text"><em>{{ panel.scene_description }}</em></p>
+            </div>
+            {% endif %}
+
+            <!-- Image Prompt Reference -->
+            {% if panel.image_prompt %}
+            <details class="prompt-reference-accordion">
+              <summary class="prompt-ref-summary">&#128065; Visual Prompt Reference</summary>
+              <div class="prompt-ref-body">
+                <code>{{ panel.image_prompt }}</code>
+              </div>
+            </details>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </main>
+
+    <!-- Bottom Actions -->
+    <div class="bottom-action-bar">
+      {% if pdf_path %}
+        <a href="{{ pdf_path }}" download class="btn-download-pdf btn-large">
+          <span class="btn-icon">&#128196;</span>
+          DOWNLOAD YOUR COMIC AS PDF
+        </a>
+      {% endif %}
+      <a href="/" class="btn-secondary">Go Create Another Comic</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="comic-footer">
+      <p>ComicCraft &bull; AI Comic Story Creator &bull; Powered by Google Gemini & Stable Diffusion</p>
+    </footer>
+  </div>
+</body>
+</html>

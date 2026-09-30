@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Comic Is Ready! – ComicCraft</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="comic-bg">
+  <div class="comic-wrapper export-wrapper">
+    <div class="export-card comic-card">
+      <div class="success-badge">&#10004; EXPORT COMPLETE</div>
+      
+      <h1 class="export-heading">YOUR COMIC IS READY!</h1>
+      <p class="export-message">
+        Your 5-panel comic has been synthesized by Google Gemini models, illustrated through the visual generation pipeline, and compiled into a high-resolution, multi-page PDF document.
+      </p>
+
+      {% if generation_id %}
+      <div class="gen-id-badge">
+        <span>Generation ID:</span> <code>{{ generation_id }}</code>
+      </div>
+      {% endif %}
+
+      <div class="export-actions">
+        {% if pdf_path %}
+          <a href="{{ pdf_path }}" download class="btn-download-pdf btn-large">
+            <span class="btn-icon">&#128196;</span>
+            DOWNLOAD YOUR COMIC AS PDF
+          </a>
+        {% endif %}
+        
+        <a href="/" class="comic-submit-btn btn-another">
+          <span class="btn-text">GO CREATE ANOTHER COMIC</span>
+        </a>
+      </div>
+
+      <div class="export-features-list">
+        <div class="feat-item">
+          <strong>Sequential Flow:</strong> Introduction &bull; Discovery &bull; Conflict &bull; Climax &bull; Resolution
+        </div>
+        <div class="feat-item">
+          <strong>Rich Story:</strong> Custom captions, dialogue bubbles, and scene descriptions
+        </div>
+        <div class="feat-item">
+          <strong>PDF Format:</strong> Formatted for print or digital sharing via standard A4 page layout
+        </div>
+      </div>
+    </div>
+
+    <footer class="comic-footer">
+      <p>ComicCraft &bull; AI Comic Story Creator &bull; Powered by Google Gemini & Stable Diffusion</p>
+    </footer>
+  </div>
+</body>
+</html>
